@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ABAS India Portal Vision Presentation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #08131c;
+      --bg-soft: #102332;
+      --panel: rgba(12, 28, 40, 0.78);
+      --panel-strong: rgba(9, 22, 31, 0.92);
+      --line: rgba(168, 208, 255, 0.18);
+      --text: #ebf5ff;
+      --muted: #9cb4c7;
+      --brand: #49dcb1;
+      --brand-2: #f2b24b;
+      --brand-3: #6bc2ff;
+      --danger: #ff8a8a;
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max: 1220px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(73, 220, 177, 0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(107, 194, 255, 0.22), transparent 24%),
+        radial-gradient(circle at bottom center, rgba(242, 178, 75, 0.14), transparent 22%),
+        linear-gradient(180deg, #061018 0%, #091824 48%, #07121a 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(circle at center, black 45%, transparent 85%);
+      pointer-events: none;
+      opacity: 0.55;
+    }
+
+    .orb {
+      position: fixed;
+      border-radius: 999px;
+      filter: blur(30px);
+      opacity: 0.45;
+      pointer-events: none;
+      animation: drift 14s ease-in-out infinite;
+    }
+
+    .orb.one {
+      width: 260px;
+      height: 260px;
+      background: rgba(73, 220, 177, 0.28);
+      top: 8%;
+      left: -6%;
+    }
+
+    .orb.two {
+      width: 300px;
+      height: 300px;
+      background: rgba(107, 194, 255, 0.2);
+      top: 38%;
+      right: -8%;
+      animation-delay: -4s;
+    }
+
+    .orb.three {
+      width: 220px;
+      height: 220px;
+      background: rgba(242, 178, 75, 0.18);
+      bottom: 10%;
+      left: 18%;
+      animation-delay: -8s;
+    }
+
+    @keyframes drift {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(20px, -24px, 0) scale(1.08); }
+    }
+
+    @keyframes floatUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulseLine {
+      0%, 100% { opacity: 0.35; transform: scaleX(0.85); }
+      50% { opacity: 1; transform: scaleX(1); }
+    }
+
+    @keyframes cardGlow {
+      0%, 100% { box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22); }
+      50% { box-shadow: 0 28px 70px rgba(73, 220, 177, 0.16); }
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(6, 16, 24, 0.68);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .topbar-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-badge {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-3));
+      color: #04131b;
+      font-weight: 800;
+      box-shadow: var(--shadow);
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 1rem;
+      font-family: "Space Grotesk", sans-serif;
+      letter-spacing: 0.04em;
+    }
+
+    .brand p {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 0.83rem;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .nav a,
+    .hero-actions a {
+      text-decoration: none;
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+      padding: 10px 14px;
+      border-radius: 999px;
+      transition: 220ms ease;
+    }
+
+    .nav a:hover,
+    .hero-actions a:hover {
+      transform: translateY(-2px);
+      border-color: rgba(73, 220, 177, 0.45);
+      background: rgba(73, 220, 177, 0.08);
+    }
+
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 26px 24px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    section {
+      margin: 28px 0;
+      animation: floatUp 900ms ease both;
+    }
+
+    .hero {
+      min-height: calc(100vh - 90px);
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero-copy {
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(73, 220, 177, 0.1);
+      border: 1px solid rgba(73, 220, 177, 0.24);
+      color: var(--brand);
+      font-size: 0.88rem;
+      letter-spacing: 0.03em;
+    }
+
+    .hero h2 {
+      margin: 22px 0 14px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2.6rem, 6vw, 5.4rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .hero h2 span {
+      color: var(--brand);
+    }
+
+    .hero p {
+      margin: 0 0 26px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.75;
+      max-width: 60ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .hero-actions .primary {
+      background: linear-gradient(135deg, var(--brand), #26b89f);
+      color: #061018;
+      border: none;
+      font-weight: 800;
+    }
+
+    .hero-stats {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .mini-stat {
+      padding: 18px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .mini-stat strong {
+      display: block;
+      font-size: 1.6rem;
+      font-family: "Space Grotesk", sans-serif;
+      margin-bottom: 5px;
+    }
+
+    .hero-visual {
+      padding: 24px;
+      display: grid;
+      gap: 16px;
+      align-content: center;
+    }
+
+    .device-card,
+    .floating-card {
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      animation: cardGlow 6s ease-in-out infinite;
+    }
+
+    .device-card {
+      padding: 18px;
+    }
+
+    .device-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .bars,
+    .mini-bars {
+      display: flex;
+      gap: 6px;
+    }
+
+    .bars span,
+    .mini-bars span {
+      display: block;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.18);
+    }
+
+    .bars span:nth-child(1) { width: 10px; height: 10px; background: #ff8e8e; }
+    .bars span:nth-child(2) { width: 10px; height: 10px; background: #ffd36d; }
+    .bars span:nth-child(3) { width: 10px; height: 10px; background: #5ff0bf; }
+
+    .visual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .ui-box {
+      border-radius: 18px;
+      padding: 16px;
+      background: rgba(8, 16, 25, 0.86);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      min-height: 130px;
+    }
+
+    .ui-box h3,
+    .slide h3,
+    .section-title h3 {
+      margin: 0 0 10px;
+      font-family: "Space Grotesk", sans-serif;
+      letter-spacing: -0.03em;
+    }
+
+    .ui-line {
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(73,220,177,0.8), rgba(107,194,255,0.22));
+      margin: 10px 0;
+      animation: pulseLine 4.2s ease-in-out infinite;
+      transform-origin: left center;
+    }
+
+    .ui-line.soft {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .floating-stack {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .floating-card {
+      padding: 18px;
+    }
+
+    .floating-card p,
+    .slide p,
+    .muted {
+      color: var(--muted);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      max-width: 720px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      margin: 8px 0 0;
+      line-height: 1.7;
+    }
+
+    .section-kicker {
+      color: var(--brand);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+    }
+
+    .grid-3,
+    .grid-4,
+    .grid-2 {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .card {
+      padding: 22px;
+      border-radius: var(--radius-lg);
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      min-height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -60% auto;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(73, 220, 177, 0.2), transparent 70%);
+      pointer-events: none;
+    }
+
+    .card h4 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+      font-family: "Space Grotesk", sans-serif;
+    }
+
+    .card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .architecture {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .arch-box {
+      padding: 24px;
+      border-radius: var(--radius-lg);
+      background: var(--panel-strong);
+      border: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .arch-box strong {
+      display: block;
+      font-size: 1.1rem;
+      font-family: "Space Grotesk", sans-serif;
+      margin-bottom: 8px;
+    }
+
+    .arch-arrow {
+      color: var(--brand);
+      font-size: 1.8rem;
+      text-align: center;
+      opacity: 0.9;
+    }
+
+    .flow-stage {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .stage {
+      padding: 20px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(73,220,177,0.09), rgba(107,194,255,0.04));
+      border: 1px solid var(--line);
+      position: relative;
+    }
+
+    .stage .number {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      color: #071018;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      margin-bottom: 18px;
+    }
+
+    .stage p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.95rem;
+    }
+
+    .screen-wall {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .screen {
+      padding: 18px;
+      border-radius: 28px;
+      background: rgba(7, 18, 26, 0.92);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+    }
+
+    .screen-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .screen-title {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.96rem;
+    }
+
+    .screen-body {
+      min-height: 250px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .screen-box {
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .screen-box.hero-box {
+      background: linear-gradient(135deg, rgba(73,220,177,0.18), rgba(107,194,255,0.08));
+    }
+
+    .screen-row {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(9, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .timeline .phase {
+      padding: 18px 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      min-height: 160px;
+    }
+
+    .phase span {
+      color: var(--brand);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .phase h4 {
+      margin: 8px 0 8px;
+      font-size: 1rem;
+      font-family: "Space Grotesk", sans-serif;
+    }
+
+    .phase p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    .future-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .quote {
+      padding: 30px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(73,220,177,0.12), rgba(242,178,75,0.08));
+      border: 1px solid rgba(73,220,177,0.2);
+    }
+
+    .quote h3 {
+      margin: 0 0 10px;
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      font-family: "Space Grotesk", sans-serif;
+      letter-spacing: -0.04em;
+    }
+
+    .quote p {
+      margin: 0 auto;
+      max-width: 760px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    footer {
+      padding: 18px 0 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.92rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1100px) {
+      .hero,
+      .grid-3,
+      .grid-4,
+      .screen-wall,
+      .timeline,
+      .flow-stage,
+      .future-grid,
+      .grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .architecture {
+        grid-template-columns: 1fr;
+      }
+
+      .arch-arrow {
+        transform: rotate(90deg);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .topbar-inner,
+      .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero,
+      .hero-stats,
+      .grid-3,
+      .grid-4,
+      .screen-wall,
+      .timeline,
+      .flow-stage,
+      .future-grid,
+      .grid-2,
+      .visual-grid,
+      .floating-stack {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy,
+      .hero-visual {
+        padding: 24px;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+
+      .screen-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+  <div class="orb three"></div>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-badge">AI</div>
+        <div>
+          <h1>ABAS INDIA PORTAL</h1>
+          <p>Vision presentation for a fully automated digital ecosystem</p>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="#vision">Vision</a>
+        <a href="#modules">Modules</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#screens">Screens</a>
+        <a href="#roadmap">Roadmap</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero reveal" id="vision">
+      <div class="hero-copy panel">
+        <div class="eyebrow">Digital Transformation for Organization Scale</div>
+        <h2>One <span>connected platform</span> for public reach, member operations, and admin control.</h2>
+        <p>
+          The ABAS India Portal vision is to build an elegant, scalable, and automated system where website content,
+          membership onboarding, payments, team hierarchy, departments, meetings, reports, and digital identity all
+          move through one unified flow.
+        </p>
+        <div class="hero-actions">
+          <a class="primary" href="#modules">Explore Product Scope</a>
+          <a href="#screens">View Demo Screens</a>
+        </div>
+        <div class="hero-stats">
+          <div class="mini-stat">
+            <strong>3</strong>
+            <span>Core experiences</span>
+          </div>
+          <div class="mini-stat">
+            <strong>6</strong>
+            <span>Hierarchy levels</span>
+          </div>
+          <div class="mini-stat">
+            <strong>9</strong>
+            <span>Delivery phases</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual panel">
+        <div class="device-card">
+          <div class="device-head">
+            <span>Live Ecosystem Preview</span>
+            <div class="bars"><span></span><span></span><span></span></div>
+          </div>
+          <div class="visual-grid">
+            <div class="ui-box">
+              <h3>Public Website</h3>
+              <div class="ui-line"></div>
+              <div class="ui-line soft"></div>
+              <div class="ui-line soft" style="width: 72%;"></div>
+            </div>
+            <div class="ui-box">
+              <h3>Member Portal</h3>
+              <div class="ui-line"></div>
+              <div class="ui-line soft"></div>
+              <div class="ui-line soft" style="width: 62%;"></div>
+            </div>
+            <div class="ui-box">
+              <h3>Admin Panel</h3>
+              <div class="ui-line"></div>
+              <div class="ui-line soft"></div>
+              <div class="ui-line soft" style="width: 84%;"></div>
+            </div>
+            <div class="ui-box">
+              <h3>Automation Layer</h3>
+              <div class="ui-line"></div>
+              <div class="ui-line soft"></div>
+              <div class="ui-line soft" style="width: 58%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="floating-stack">
+          <div class="floating-card">
+            <h3>Automated Flows</h3>
+            <p>Approvals, payment receipts, QR verification, notifications, reports, and ID generation.</p>
+          </div>
+          <div class="floating-card">
+            <h3>Future Ready</h3>
+            <p>Built to support 1 lakh+ members, multi-state growth, mobile app expansion, and AI features.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <div class="section-head">
+        <div class="section-title">
+          <div class="section-kicker">Core Idea</div>
+          <h3>What this project is meant to solve</h3>
+          <p>
+            Today, many organization activities are scattered across calls, spreadsheets, manual records, and disconnected tools.
+            This portal turns that into a structured digital operating system for the entire organization.
+          </p>
+        </div>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <h4>Public Trust & Visibility</h4>
+          <ul>
+            <li>Showcase the mission, departments, projects, and team structure professionally.</li>
+            <li>Make it simple for people to understand what the organization does and how to join.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h4>Member Automation</h4>
+          <ul>
+            <li>Digitize registration, approvals, payments, receipts, ID cards, and meeting communication.</li>
+            <li>Give each member a clean self-service dashboard.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h4>Admin Efficiency</h4>
+          <ul>
+            <li>Provide role-based control from national level down to colony and society teams.</li>
+            <li>Reduce repetitive manual work through workflow-driven operations.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="reveal" id="modules">
+      <div class="section-head">
+        <div class="section-title">
+          <div class="section-kicker">Product Scope</div>
+          <h3>The platform is built around three major surfaces</h3>
+          <p>Each surface solves a different part of the journey, but they all run on one shared system and one connected data model.</p>
+        </div>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <h4>1. Public Website</h4>
+          <ul>
+            <li>Home, About, Maharaja Agrasen, Projects, Teams, Contact, Search</li>
+            <li>Department landing pages and organization structure visibility</li>
+            <li>Membership discovery and joining flow</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h4>2. Member Portal</h4>
+          <ul>
+            <li>Login, signup, OTP, dashboard, payments, receipts, digital ID</li>
+            <li>Directory, meetings, agenda, MOM, notifications, donation history</li>
+            <li>Membership application and status tracking</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h4>3. Admin Panel</h4>
+          <ul>
+            <li>Members, approvals, team hierarchy, departments, meetings, ads, CMS</li>
+            <li>Finance tracking, exports, reports, permissions, content operations</li>
+            <li>National to local team-level administration</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <div class="section-head">
+        <div class="section-title">
+          <div class="section-kicker">Key Modules</div>
+          <h3>The business engine behind the portal</h3>
+          <p>These modules define the operating backbone of the system and create the “fully automated” experience.</p>
+        </div>
+      </div>
+      <div class="grid-4">
+        <article class="card">
+          <h4>Membership System</h4>
+          <ul>
+            <li>Trustee, Patron, Bhamashah, Member</li>
+            <li>Approval workflow</li>
+            <li>Receipt generation</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h4>Team Hierarchy</h4>
+          <ul>
+            <li>National to Colony layers</li>
+            <li>Scoped access and local operations</li>
+            <li>Structured reporting</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h4>Meeting Engine</h4>
+          <ul>
+            <li>Agenda publishing</li>
+            <li>Attendance tracking</li>
+            <li>MOM notes and updates</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h4>Digital Identity</h4>
+          <ul>
+            <li>QR verification</li>
+            <li>Member ID cards</li>
+            <li>Shareable digital proof</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="reveal" id="architecture">
+      <div class="section-head">
+        <div class="section-title">
+          <div class="section-kicker">Architecture</div>
+          <h3>A scalable structure for growth and automation</h3>
+          <p>
+            The recommended architecture separates user experiences while keeping data and business logic centralized.
+            This makes the platform easier to maintain, extend, and scale across states and departments.
+          </p>
+        </div>
+      </div>
+      <div class="architecture">
+        <div class="arch-box">
+          <strong>Next.js Frontend</strong>
+          <span class="muted">Public website and member portal</span>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box">
+          <strong>Node.js API</strong>
+          <span class="muted">Auth, payments, automation, reporting, permissions</span>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box">
+          <strong>PostgreSQL + Storage</strong>
+          <span class="muted">Core data, documents, media, receipts, ID cards</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <div class="section-head">
+        <div class="section-title">
+          <div class="section-kicker">Automation Vision</div>
+          <h3>How the system becomes fully automated</h3>
+          <p>Automation is not just a feature here. It is the main value driver of the entire project.</p>
+        </div>
+      </div>
+      <div class="flow-stage">
+        <article class="stage">
+          <div class="number">1</div>
+          <h4>User Registers</h4>
+          <p>People join through the public website or member portal with validated details and structured profile data.</p>
+        </article>
+        <article class="stage">
+          <div class="number">2</div>
+          <h4>System Verifies</h4>
+          <p>OTP confirmation, payment confirmation, and admin-ready application data are prepared automatically.</p>
+        </article>
+        <article class="stage">
+          <div class="number">3</div>
+          <h4>Admin Approves</h4>
+          <p>Admins review only the final approval decision instead of doing repetitive manual record handling.</p>
+        </article>
+        <article class="stage">
+          <div class="number">4</div>
+          <h4>Assets Generate</h4>
+          <p>Receipts, member IDs, QR verification records, and notifications are created instantly after approval.</p>
+        </article>
+        <article class="stage">
+          <div class="number">5</div>
+          <h4>Insights Continue</h4>
+          <p>Meetings, reports, reminders, hierarchy tracking, and finance dashboards stay continuously updated.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="reveal" id="screens">
+      <div class="section-head">
+        <div class="section-title">
+          <div class="section-kicker">Demo Screens</div>
+          <h3>Presentation-ready visual direction for the product</h3>
+          <p>These conceptual screens show how the experience can feel: modern, premium, and highly structured.</p>
+        </div>
+      </div>
+      <div class="screen-wall">
+        <article class="screen">
+          <div class="screen-header">
+            <div class="screen-title">Public Home</div>
+            <div class="mini-bars"><span style="width:8px;height:8px;"></span><span style="width:8px;height:8px;"></span><span style="width:8px;height:8px;"></span></div>
+          </div>
+          <div class="screen-body">
+            <div class="screen-box hero-box">Hero banner, vision statement, call to action</div>
+            <div class="screen-row">
+              <div class="screen-box">Stats</div>
+              <div class="screen-box">Ads / Sponsors</div>
+            </div>
+            <div class="screen-row">
+              <div class="screen-box">Departments</div>
+              <div class="screen-box">Team hierarchy</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="screen">
+          <div class="screen-header">
+            <div class="screen-title">Member Dashboard</div>
+            <div class="mini-bars"><span style="width:8px;height:8px;"></span><span style="width:8px;height:8px;"></span><span style="width:8px;height:8px;"></span></div>
+          </div>
+          <div class="screen-body">
+            <div class="screen-box hero-box">Membership status, profile summary, quick actions</div>
+            <div class="screen-row">
+              <div class="screen-box">Payments</div>
+              <div class="screen-box">Digital ID</div>
+            </div>
+            <div class="screen-row">
+              <div class="screen-box">Meetings</div>
+              <div class="screen-box">Notifications</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="screen">
+          <div class="screen-header">
+            <div class="screen-title">Admin Dashboard</div>
+            <div class="mini-bars"><span style="width:8px;height:8px;"></span><span style="width:8px;height:8px;"></span><span style="width:8px;height:8px;"></span></div>
+          </div>
+          <div class="screen-body">
+            <div class="screen-box hero-box">KPIs, pending approvals, operational overview</div>
+            <div class="screen-row">
+              <div class="screen-box">Members</div>
+              <div class="screen-box">Finance</div>
+            </div>
+            <div class="screen-row">
+              <div class="screen-box">Teams</div>
+              <div class="screen-box">CMS / Ads</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <div class="section-head">
+        <div class="section-title">
+          <div class="section-kicker">Role System</div>
+          <h3>Multi-level governance built into the platform</h3>
+          <p>Role-based access ensures every user sees only what they need, while central leadership still gets a complete view.</p>
+        </div>
+      </div>
+      <div class="grid-4">
+        <article class="card"><h4>Super Admin</h4><p class="muted">Full platform control, reporting, finance, CMS, approvals, and configuration.</p></article>
+        <article class="card"><h4>National / State Admin</h4><p class="muted">Regional governance, approvals, team management, meetings, and activity oversight.</p></article>
+        <article class="card"><h4>District / Team Managers</h4><p class="muted">Local member handling, attendance, department operations, and team-level communication.</p></article>
+        <article class="card"><h4>Members</h4><p class="muted">Personal dashboard, payments, receipts, meetings, directory, and digital identity access.</p></article>
+      </div>
+    </section>
+
+    <section class="reveal" id="roadmap">
+      <div class="section-head">
+        <div class="section-title">
+          <div class="section-kicker">Delivery Roadmap</div>
+          <h3>A phased launch strategy to reach MVP fast and scale safely</h3>
+          <p>The build plan is designed so the organization can start seeing value early while the platform continues expanding.</p>
+        </div>
+      </div>
+      <div class="timeline">
+        <article class="phase"><span>Phase 1</span><h4>Planning</h4><p>Requirements, sitemap, wireframes, architecture, UI direction.</p></article>
+        <article class="phase"><span>Phase 2</span><h4>Website</h4><p>Public pages, responsive layouts, SEO, search, contact flow.</p></article>
+        <article class="phase"><span>Phase 3</span><h4>Auth</h4><p>Login, signup, OTP, recovery, role-ready account structure.</p></article>
+        <article class="phase"><span>Phase 4</span><h4>Admin Core</h4><p>Dashboard, members, approvals, hierarchy, CMS basics.</p></article>
+        <article class="phase"><span>Phase 5</span><h4>Payments</h4><p>Membership flow, gateway integration, receipts, digital ID.</p></article>
+        <article class="phase"><span>Phase 6</span><h4>Meetings</h4><p>Agenda, attendance, MOM notes, alerts, history view.</p></article>
+        <article class="phase"><span>Phase 7</span><h4>Search</h4><p>Directory search, filters, team discovery, role lookup.</p></article>
+        <article class="phase"><span>Phase 8</span><h4>Testing</h4><p>Performance, security, QA, backups, bug fixing.</p></article>
+        <article class="phase"><span>Phase 9</span><h4>Deployment</h4><p>Server setup, SSL, production release, monitoring.</p></article>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <div class="section-head">
+        <div class="section-title">
+          <div class="section-kicker">Future Expansion</div>
+          <h3>The long-term vision goes beyond the web portal</h3>
+          <p>Once the core system is stable, the same platform can unlock new capabilities without rebuilding from scratch.</p>
+        </div>
+      </div>
+      <div class="future-grid">
+        <article class="card">
+          <h4>Mobile App</h4>
+          <ul>
+            <li>Android and iOS member access</li>
+            <li>On-the-go notifications, meeting access, and ID card usage</li>
+            <li>Field-ready local team operations</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h4>AI and Smart Operations</h4>
+          <ul>
+            <li>Smart search across members, teams, departments, and documents</li>
+            <li>Auto meeting summary and suggested MOM drafting</li>
+            <li>AI chat assistant for member help and admin support</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="quote panel reveal">
+      <h3>Vision: build one intelligent system that helps the organization grow with structure, speed, and trust.</h3>
+      <p>
+        This is not only a website project. It is a digital foundation for membership growth, operational efficiency,
+        financial clarity, communication, accountability, and long-term expansion across states and departments.
+      </p>
+    </section>
+
+    <footer>
+      ABAS India Portal Vision Presentation • Standalone animated HTML deck
+    </footer>
+  </main>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+        }
+      });
+    }, { threshold: 0.16 });
+
+    document.querySelectorAll(".reveal").forEach((node) => observer.observe(node));
+  </script>
+</body>
+</html>
